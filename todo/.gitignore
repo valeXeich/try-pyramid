@@ -21,3 +21,5 @@ coverage
 test
 *.sqlite
 __pycache__
+
+*.env
