@@ -3,6 +3,8 @@ from typing import List
 from src.database.uow import IUnitOfWork
 from src.services.dto import TaskDTO
 
+from pyramid.exceptions import HTTPNotFound
+
 
 class TaskService:
 
@@ -12,7 +14,7 @@ class TaskService:
     def get_task(self, pk: int) -> TaskDTO:
         with self._uow as uow:
             if not uow.tasks.exists(id=pk):
-                return False
+                raise HTTPNotFound(detail="Task does not exist")
             task = uow.tasks.get_task(pk=pk)
         return task
     
@@ -23,6 +25,8 @@ class TaskService:
     
     def update(self, pk: int, **values) -> TaskDTO:
         with self._uow as uow:
+            if not uow.tasks.exists(id=pk):
+                raise HTTPNotFound(detail="Task does not exist")
             task = uow.tasks.update_task(pk=pk, **values)
             uow.commit()
         return task
@@ -35,6 +39,8 @@ class TaskService:
     
     def delete(self, pk: int) -> None:
         with self._uow as uow:
+            if not uow.tasks.exists(id=pk):
+                raise HTTPNotFound(detail="Task does not exist")
             uow.tasks.delete_task(pk=pk)
             uow.commit()
     
