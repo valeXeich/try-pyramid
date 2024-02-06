@@ -12,6 +12,19 @@ Getting Started
 
     try-pyramid/pip install --upgrade pip setuptools
 
+- Сreate try-pyramid/.env file.
+
+    ```env
+    DB_URL=postgresql+psycopg2://postgres:postgres@localhost/postgres
+
+    POSTGRES_USER=postgres
+    POSTGRES_PASSWORD=postgres
+    POSTGRES_DB=postgres
+    
+    PGADMIN_DEFAULT_EMAIL=admin@admin.com
+    PGADMIN_DEFAULT_PASSWORD=admin
+    ```
+
 - Upgrade the database using Alembic.
 
     - Upgrade to that revision.
