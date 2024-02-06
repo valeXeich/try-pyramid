@@ -2,7 +2,7 @@ import json
 
 from pyramid.view import view_config, view_defaults
 from pyramid.request import Request
-
+from pyramid.exceptions import HTTPBadRequest
 
 from src.deps import get_task_service
 from src.schemas.tasks import Task
@@ -26,13 +26,19 @@ class TaskView:
     @view_config(route_name='task', request_method='PUT')
     def update(self):
         pk = self.request.matchdict.get('pk')
-        data = Task.model_validate(self.request.json_body)
+        try:
+            data = Task.model_validate(self.request.json_body)
+        except ValueError:
+            raise HTTPBadRequest(detail="Incorrect data")
         task = get_task_service().update(pk, **data.model_dump())
         return task.model_dump()
     
     @view_config(route_name='create', request_method='POST')
     def create(self):
-        data = Task.model_validate(self.request.json_body)
+        try:
+            data = Task.model_validate(self.request.json_body)
+        except ValueError:
+            raise HTTPBadRequest(detail="Incorrect data")
         task = get_task_service().create(**data.model_dump())
         return task.model_dump()
     
