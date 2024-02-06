@@ -11,4 +11,4 @@ def does_not_exist_response(exc: HTTPNotFound, request: Request):
 
 @exception_view_config(HTTPBadRequest, renderer='json')
 def bad_request_handler(exc: HTTPBadRequest, request: Request):
-    return Response(json_body={"error": exc.detail}, status=404)
+    return Response(json_body={"error": exc.detail}, status=400)
