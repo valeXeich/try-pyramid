@@ -2,8 +2,8 @@ from typing import Annotated
 
 from sqlalchemy.orm import Mapped, mapped_column
 
-from todo.database.session import Base
-from todo.database.enums import Status
+from src.database.session import Base
+from src.database.enums import Status
 
 
 intpk = Annotated[int, mapped_column(primary_key=True)]

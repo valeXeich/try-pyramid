@@ -2,8 +2,8 @@ from typing import List
 
 from sqlalchemy import select, update, insert, delete, exists
 
-from todo.database.models import Task
-from todo.services.dto import TaskDTO
+from src.database.models import Task
+from src.services.dto import TaskDTO
 
 
 class TaskRepository:

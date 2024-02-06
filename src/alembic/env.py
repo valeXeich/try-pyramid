@@ -3,8 +3,8 @@ from alembic import context
 from pyramid.paster import get_appsettings, setup_logging
 from sqlalchemy import engine_from_config
 
-from todo.database.models import Task
-from todo.database.session import Base
+from src.database.models import Task
+from src.database.session import Base
 
 config = context.config
 

@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from todo.repositories.tasks import TaskRepository
+from src.repositories.tasks import TaskRepository
 
 
 class IUnitOfWork(Protocol):

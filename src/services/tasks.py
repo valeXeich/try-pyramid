@@ -1,7 +1,7 @@
 from typing import List
 
-from todo.database.uow import IUnitOfWork
-from todo.services.dto import TaskDTO
+from src.database.uow import IUnitOfWork
+from src.services.dto import TaskDTO
 
 
 class TaskService:
